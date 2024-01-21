@@ -24,7 +24,7 @@ func getTitle(h types.Host) string {
 	if err != nil {
 		user.Username = ""
 	}
-	return user.Username + "@" + strings.Split(h.Info().Hostname, ".")[0]
+	return user.Username + "@" + h.Info().OS.Platform
 }
 
 func getMem(h types.Host) string {
@@ -48,7 +48,7 @@ func formatTime(duration time.Duration) string {
 	minutes = (time - (days * 86400) - (hours * 3600)) / 60
 	// seconds = time - (days * 86400) - (hours * 3600) - (minutes * 60)
 
-	return strconv.Itoa(days) + " days, " + strconv.Itoa(hours) + " hours, " + strconv.Itoa(minutes) + " minutes"
+	return strconv.Itoa(days) + "d " + strconv.Itoa(hours) + "h " + strconv.Itoa(minutes) + "m"
 }
 
 func formatBytes(bytes uint64) string {
